@@ -86,6 +86,36 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
   setClock('.timer', deadline);
+
+  // Modal
+
+  const modalOpen = document.querySelectorAll('[data-modal]'),
+    modalClose = document.querySelector('[data-close]'),
+    modal = document.querySelector('.modal');
+  function openModalWindow() {
+    modalOpen.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.classList.toggle('hide');
+        modal.classList.add('show', 'fade');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+  }
+  function closeModalWinow(obj) {
+    obj.addEventListener('click', () => {
+      modal.classList.toggle('show');
+      modal.classList.toggle('hide');
+      document.body.style.overflow = '';
+    });
+
+    // modal.addEventListener('click', () => {
+    //     modal.classList.remove('show');
+    //     modal.classList.toggle('hide');
+    //     document.body.style.overflow = '';
+    // })
+  }
+  openModalWindow();
+  closeModalWinow(modal, modalClose);
 });
 /******/ })()
 ;

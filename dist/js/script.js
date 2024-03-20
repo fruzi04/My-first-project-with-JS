@@ -107,12 +107,6 @@ window.addEventListener('DOMContentLoaded', () => {
       modal.classList.toggle('hide');
       document.body.style.overflow = '';
     });
-
-    // modal.addEventListener('click', () => {
-    //     modal.classList.remove('show');
-    //     modal.classList.toggle('hide');
-    //     document.body.style.overflow = '';
-    // })
   }
   openModalWindow();
   closeModalWinow(modal, modalClose);

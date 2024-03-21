@@ -121,6 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   const modalTimerId = setTimeout(openModalWindow, 15000);
   closeModalWinow(modalClose);
+  window.addEventListener('scroll', () => {});
 });
 /******/ })()
 ;

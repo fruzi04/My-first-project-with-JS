@@ -109,14 +109,15 @@ window.addEventListener('DOMContentLoaded', () => {
           modal = document.querySelector('.modal');
     
     function openModalWindow() {
-        modalOpen.forEach(btn => {
-            btn.addEventListener('click', () => {
-                modal.classList.toggle('hide');
-                modal.classList.add('show', 'fade');
-                document.body.style.overflow = 'hidden';
-            });
-        });
+        modal.classList.toggle('hide');
+        modal.classList.add('show', 'fade');
+        document.body.style.overflow = 'hidden'; 
+        clearInterval(modalTimerId); 
     }
+    
+    modalOpen.forEach(btn => {
+        btn.addEventListener('click', openModalWindow);
+    });
     
     function closeModalWinow(obj) {
         obj.addEventListener('click', () => {
@@ -125,7 +126,25 @@ window.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = '';
         })
     }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModalWinow(modal);
+        }    
+    });
     
-    openModalWindow();
-    closeModalWinow(modal, modalClose);
+    document.addEventListener('keydown', (e) => {
+        if (e.code === "Escape" && modal.classList.contains('show')) {
+            closeModalWinow();
+            document.body.style.overflow = '';
+        }
+    });
+
+    const modalTimerId = setTimeout(openModalWindow, 15000)
+
+    closeModalWinow(modalClose);
+
+    window.addEventListener('scroll', () => {
+        
+    });
 });

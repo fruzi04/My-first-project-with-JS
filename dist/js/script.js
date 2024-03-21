@@ -93,14 +93,14 @@ window.addEventListener('DOMContentLoaded', () => {
     modalClose = document.querySelector('[data-close]'),
     modal = document.querySelector('.modal');
   function openModalWindow() {
-    modalOpen.forEach(btn => {
-      btn.addEventListener('click', () => {
-        modal.classList.toggle('hide');
-        modal.classList.add('show', 'fade');
-        document.body.style.overflow = 'hidden';
-      });
-    });
+    modal.classList.toggle('hide');
+    modal.classList.add('show', 'fade');
+    document.body.style.overflow = 'hidden';
+    clearInterval(modalTimerId);
   }
+  modalOpen.forEach(btn => {
+    btn.addEventListener('click', openModalWindow);
+  });
   function closeModalWinow(obj) {
     obj.addEventListener('click', () => {
       modal.classList.toggle('show');
@@ -108,8 +108,19 @@ window.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     });
   }
-  openModalWindow();
-  closeModalWinow(modal, modalClose);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      closeModalWinow(modal);
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.code === "Escape" && modal.classList.contains('show')) {
+      closeModalWinow();
+      document.body.style.overflow = '';
+    }
+  });
+  const modalTimerId = setTimeout(openModalWindow, 15000);
+  closeModalWinow(modalClose);
 });
 /******/ })()
 ;

@@ -121,7 +121,13 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   const modalTimerId = setTimeout(openModalWindow, 15000);
   closeModalWinow(modalClose);
-  window.addEventListener('scroll', () => {});
+  function showModalByScroll() {
+    if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
+      openModalWindow();
+      window.removeEventListener('scroll', showModalByScroll);
+    }
+  }
+  window.addEventListener('scroll', showModalByScroll);
 });
 /******/ })()
 ;

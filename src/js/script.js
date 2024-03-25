@@ -104,11 +104,10 @@ window.addEventListener('DOMContentLoaded', () => {
     // Modal
 
     const modalOpen = document.querySelectorAll('[data-modal]'),
-          modalClose = document.querySelector('[data-close]'),
           modal = document.querySelector('.modal');
     
     function openModalWindow() {
-        modal.classList.toggle('hide');
+        modal.classList.remove('hide');
         modal.classList.add('show', 'fade');
         document.body.style.overflow = 'hidden'; 
         clearInterval(modalTimerId); 
@@ -118,16 +117,14 @@ window.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', openModalWindow);
     });
     
-    function closeModalWinow(obj) {
-        obj.addEventListener('click', () => {
-            modal.classList.toggle('show');
-            modal.classList.toggle('hide');
-            document.body.style.overflow = '';
-        })
+    function closeModalWinow() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
     }
 
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
+        if (e.target === modal || e.target.getAttribute('data-close') == '') {
             closeModalWinow(modal);
         }    
     });
@@ -139,9 +136,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const modalTimerId = setTimeout(openModalWindow, 15000)
-
-    closeModalWinow(modalClose);
+    const modalTimerId = setTimeout(openModalWindow, 50000)
 
     function showModalByScroll() {
         if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight -1) {
@@ -261,14 +256,37 @@ window.addEventListener('DOMContentLoaded', () => {
             request.addEventListener('load', () => {
                 if (request.status === 200) {
                     console.log(request.response);
-                    statusMessage.textContent = message.success;
+                    showThanksModal(message.success);
+                    statusMessage.remove();
                     form.reset();
-                    setTimeout(() => {statusMessage.remove();}, 2000);
                 } else {
-                    statusMessage.textContent = message.failure;
+                    showThanksModal(message.failure);
                 }
             });
         });
+    }
+
+    function showThanksModal(message) {
+        const prevModalDialog = document.querySelector('.modal__dialog');
+
+        prevModalDialog.classList.add('hide');
+        openModalWindow();
+
+        const thanksModal = document.createElement('div');
+        thanksModal.classList.add('modal__dialog');
+        thanksModal.innerHTML = `
+            <div class="modal__content">
+                <div class="modal__close" data-close>×</div>
+                <div class="modal__title">${message}</div>
+            </div>
+        `;
+        document.querySelector('.modal').append(thanksModal);
+        setTimeout(() => {
+            thanksModal.remove();
+            prevModalDialog.classList.add('show');
+            prevModalDialog.classList.remove('hide');
+            closeModalWinow();
+        }, 4000);
     }
 });
 

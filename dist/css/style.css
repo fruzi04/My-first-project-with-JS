@@ -624,3 +624,8 @@ a {
   width: 280px;
   margin: 0 auto;
 }
+
+.status {
+  margin: 15px auto;
+  font-weight: 700;
+}

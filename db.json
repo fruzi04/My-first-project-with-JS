@@ -27,48 +27,18 @@
   ],
   "requests": [
     {
-      "id": "e81f",
-      "name": "Андрій",
-      "phone": "342423"
-    },
-    {
-      "id": "b513",
-      "name": "Ahmed Terkonyan",
-      "phone": "+122833745"
-    },
-    {
-      "id": "7ce8",
-      "name": "Kyryl Sinko",
-      "phone": "+122833745"
-    },
-    {
-      "id": "f446",
-      "name": "Володимир Зеленський",
-      "phone": "+38 068 942 28 20"
-    },
-    {
-      "id": "d6a6",
-      "name": "Ahmed Terkonyan",
-      "phone": "+122833745"
-    },
-    {
-      "id": "9234",
-      "name": "Андрій",
-      "phone": "+122833745"
-    },
-    {
-      "id": "7d3e",
+      "id": "77c2",
       "name": "Кирило",
       "phone": "+122833745"
     },
     {
-      "id": "b29b",
-      "name": "Ahmed Terkonyan",
+      "id": "56cb",
+      "name": "Кирило",
       "phone": "+122833745"
     },
     {
-      "id": "bb7d",
-      "name": "Ahmed Terkonyan",
+      "id": "0ace",
+      "name": "Кирило",
       "phone": "+122833745"
     }
   ]

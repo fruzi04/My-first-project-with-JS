@@ -72,8 +72,8 @@ function calculator() {
         });
     }
 
-    getStaticInformation('#gender', 'calculating__choose-item_active');
-    getStaticInformation('.calculating__choose_big', 'calculating__choose-item_active');
+    getStaticInformation('#gender div', 'calculating__choose-item_active');
+    getStaticInformation('.calculating__choose_big div', 'calculating__choose-item_active');
 
     function getDynamicInformation(selector) {
         const input = document.querySelector(selector);
@@ -106,4 +106,4 @@ function calculator() {
     getDynamicInformation('#age');
 }
 
-module.exports = calculator;
+export default calculator;

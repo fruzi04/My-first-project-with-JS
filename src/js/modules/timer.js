@@ -1,4 +1,4 @@
-function timer(id, deadline) {
+function timer({id, deadline, days, hours, minutes, seconds}) {
     
     function getTimeRemaining(endtime) {
         let days, hours, minutes, seconds;
@@ -32,13 +32,13 @@ function timer(id, deadline) {
         }
     }
 
-    function setClock(selector, endtime) {
+    function setClock(selector, endtime, d, h, min, sec) {
 
         const timer = document.querySelector(selector),
-            days = timer.querySelector("#days"),
-            hours = timer.querySelector('#hours'),
-            minutes = timer.querySelector('#minutes'),
-            seconds = timer.querySelector('#seconds'),
+            days = timer.querySelector(d),
+            hours = timer.querySelector(h),
+            minutes = timer.querySelector(min),
+            seconds = timer.querySelector(sec),
             timeInterval = setInterval(updateClock, 1000);
 
         updateClock();
@@ -57,7 +57,7 @@ function timer(id, deadline) {
         }
     }
 
-    setClock(id, deadline);
+    setClock(id, deadline, days, hours, minutes, seconds);
 }
 
 export default timer;

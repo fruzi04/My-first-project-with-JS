@@ -1,3 +1,6 @@
+require('es6-promise').polyfill();
+import 'nodelist-foreach-polyfill';
+
 import tabs from './modules/tabs';
 import modal, {openModalWindow} from './modules/modal';
 import timer from './modules/timer';
@@ -12,7 +15,14 @@ window.addEventListener('DOMContentLoaded', () => {
     
     tabs('.tabheader__item', '.tabcontent', '.tabheader__items', 'tabheader__item_active');
     modal('[data-modal]', '.modal', modalTimerId);
-    timer('.timer', '2024-05-20');
+    timer({
+        id: '.timer', 
+        deadline: '2024-05-20', 
+        days: '#days',
+        hours: '#hours',
+        minutes: '#minutes',
+        seconds: '#seconds'
+    });
     slider({
         container: '.offer__slider',
         nextArrow: '.offer__slider-next',
@@ -25,5 +35,5 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     forms('form', modalTimerId);
     cards();
-    calculator();      
+    calculator();
 });
